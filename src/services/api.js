@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: __DEV__ ? 'http://localhost:5001' : 'https://memo-api.captain.brochard.se',
+    baseURL: process.env.NODE_ENV !== 'production' ? 'http://localhost:5001' : 'https://memo-api.captain.brochard.se',
     timeout: 1000,
     headers: { 'X-Custom-Header': 'foobar' }
 });
