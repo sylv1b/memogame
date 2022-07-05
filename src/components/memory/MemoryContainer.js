@@ -3,13 +3,22 @@ import Card from "./Card";
 import useWindowSize from "../../hooks/useWindowsize";
 import Scores from "./Scores";
 
-const MemoryContainer = ({ memoData, onTryAgain }) => {
+const MemoryContainer = ({ memoData, onTryAgain, onSaveGame }) => {
   const [numOfClicks, setNumOfClicks] = useState(0);
   const [tempImagesId, setTempImagesId] = useState([]);
   const [found, setFound] = useState([]);
   const [userWins, setUserWins] = useState(false);
   const [clickDisabled, setClickDisabled] = useState(false);
   const [tries, setTries] = useState(0);
+  const [isSaveEnabled, setIsSaveEnabled] = useState(true)
+
+  useEffect(() => {
+    if (userWins && isSaveEnabled) {
+      setIsSaveEnabled(false)
+      onSaveGame(numOfClicks / 2, found.length)
+    }
+  }, [found, isSaveEnabled, numOfClicks, onSaveGame, userWins])
+
 
   //Get windows size
   const windowSize = useWindowSize();
@@ -42,6 +51,7 @@ const MemoryContainer = ({ memoData, onTryAgain }) => {
     setClickDisabled(false);
     setTries(0);
     onTryAgain();
+    setIsSaveEnabled(true)
   };
 
   useEffect(() => {
