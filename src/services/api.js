@@ -3,7 +3,6 @@ import axios from 'axios'
 const api = axios.create({
     baseURL: process.env.NODE_ENV !== 'production' ? 'http://localhost:5001' : 'https://memo-api.captain.brochard.se',
     timeout: 1000,
-    headers: { 'X-Custom-Header': 'foobar' }
 });
 
 export const getUserGames = (userId) => api.get(`/game/user/${userId}`)
