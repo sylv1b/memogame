@@ -15,3 +15,5 @@ git clone git@github.com:sylv1b/memogame.git
 cd memogame
 npm install
 npm start
+
+play it at https://memo.brochard.se
