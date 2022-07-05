@@ -48,7 +48,6 @@ function App() {
   useEffect(() => {
     if (user) getUserPastGames()
     // avoid infinite loop  
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
   const onClickPlayButton = () => {
